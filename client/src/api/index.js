@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:3000/'
+const BASE_URL = import.meta.env.VITE_BACKEND_URL
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
@@ -46,8 +46,8 @@ axiosInstance.interceptors.response.use(
 
 
 //user routes
-export const signupUser = (data) => axiosInstance.post('user/register', data);
-export const loginUser = (data) => axiosInstance.post('user/login-user', data);
+export const signupUser = (data) => axiosInstance.post('/user/register', data);
+export const loginUser = (data) => axiosInstance.post('/user/login-user', data);
 export const tryAccess = () => axiosInstance.get('/user/test-access')
 export const logoutUser = () => axiosInstance.get('/user/logout');
 export const fetchUser = () => axiosInstance.get('/user/fetch');

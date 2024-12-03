@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const team = user?.iplTeam;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,6 @@ const Home = () => {
     };
     getData();
   }, []);
-  console.log(import.meta.env)
   return (
     <div
       className={`w-full bg-[${teamStyles.primaryColor}] min-h-screen flex flex-col items-center px-4 py-8 `}
@@ -50,7 +50,7 @@ const Home = () => {
             className="absolute inset-0 bg-cover bg-center opacity-40"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1549924231-f129b911e442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080')",
+                "url('https://images.unsplash.com/photo-1652513842544-ca66b676757a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
             }}
           ></div>
           {/* Content */}
@@ -86,7 +86,7 @@ const Home = () => {
       )}
 
       {/* Loading State */}
-      {loading ? (
+      {isAuthenticated && loading ? (
         <div className="flex justify-center items-center ">
           <p className="text-lg font-semibold text-gray-600">Loading...</p>
         </div>
