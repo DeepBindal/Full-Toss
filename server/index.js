@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
-app.use("/s", userRouter);
+app.use("/user", userRouter);
 app.use("/orders", orderRouter);
 app.use("/products", productRouter);
 
