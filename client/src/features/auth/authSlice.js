@@ -36,6 +36,10 @@ export const authSlice = createSlice({
     updateUser : (state, action) => {
       state.user = action.payload.user;
       localStorage.setItem("user", JSON.stringify(state.user));
+    },
+    updateToken: (state, action) => {
+      state.accessToken = action.payload.token;
+      localStorage.setItem("accessToken", accessToken);
     }
   },
 });

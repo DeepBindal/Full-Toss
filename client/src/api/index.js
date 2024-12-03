@@ -19,7 +19,10 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        console.log('Response Interceptor triggered. Response:', response); // Log successful response
+        return response;
+    },
     async (error) => {
         const originalRequest = error.config;
 
@@ -34,13 +37,13 @@ axiosInstance.interceptors.response.use(
 
                 return axiosInstance(originalRequest);
             } catch (refreshError) {
-                console.error('Failed to refresh token:', refreshError);
                 return Promise.reject(refreshError);
             }
         }
         return Promise.reject(error);
     }
 );
+
 
 //user routes
 export const signupUser = (data) => axiosInstance.post('user/register', data);
